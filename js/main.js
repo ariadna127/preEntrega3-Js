@@ -1,271 +1,3 @@
-let alumnos = [
-    {
-        id: 0,
-        nombre: "Trejo, Flavia Lorena",
-        materias: [
-            {
-                materia: "Matematicas",
-                nota1: 4,
-                nota2: 7,
-                nota3: 6
-            },
-            {
-                materia: "Lengua",
-                nota1: 8,
-                nota2: 9,
-                nota3: 6
-            },
-            {
-                materia: "Ciencias",
-                nota1: 8,
-                nota2: 4,
-                nota3: 7
-            }
-        ]
-
-    },
-    {
-        id: 1,
-        nombre: "Jimenez, Alejandra",
-        materias: [
-            {
-                materia: "Matematicas",
-                nota1: 6,
-                nota2: 7,
-                nota3: 9
-            },
-            {
-                materia: "Lengua",
-                nota1: 9,
-                nota2: 6,
-                nota3: 5
-            },
-            {
-                materia: "Ciencias",
-                nota1: 8,
-                nota2: 6,
-                nota3: 7
-            }
-        ]
-    },
-    {
-        id: 2,
-        nombre: "Romano, Sofia Micaela",
-        materias: [
-            {
-                materia: "Matematicas",
-                nota1: 8,
-                nota2: 7,
-                nota3: 9
-            },
-            {
-                materia: "Lengua",
-                nota1: 7,
-                nota2: 6,
-                nota3: 5
-            },
-            {
-                materia: "Ciencias",
-                nota1: 6,
-                nota2: 6,
-                nota3: 8
-            }
-        ]
-    },
-    {
-        id: 3,
-        nombre: "Santucho, Maria Alejandra",
-        materias: [
-            {
-                materia: "Matematicas",
-                nota1: 6,
-                nota2: 5,
-                nota3: 7
-            },
-            {
-                materia: "Lengua",
-                nota1: 7,
-                nota2: 8,
-                nota3: 4
-            },
-            {
-                materia: "Ciencias",
-                nota1: 8,
-                nota2: 4,
-                nota3: 7
-            }
-        ]
-    },
-    {
-        id: 4,
-        nombre: "Cortez, Agustina Leandro",
-        materias: [
-            {
-                materia: "Matematicas",
-                nota1: 5,
-                nota2: 9,
-                nota3: 9
-            },
-            {
-                materia: "Lengua",
-                nota1: 9,
-                nota2: 4,
-                nota3: 5
-            },
-            {
-                materia: "Ciencias",
-                nota1: 6,
-                nota2: 6,
-                nota3: 5
-            }
-        ]
-    },
-    {
-        id: 5,
-        nombre: "Juarez, Gabriel Ignacio",
-        materias: [
-            {
-                materia: "Matematicas",
-                nota1: 6,
-                nota2: 5,
-                nota3: 7
-            },
-            {
-                materia: "Lengua",
-                nota1: 7,
-                nota2: 4,
-                nota3: 5
-            },
-            {
-                materia: "Ciencias",
-                nota1: 8,
-                nota2: 5,
-                nota3: 6
-            }
-        ]
-    },
-    {
-        id: 6,
-        nombre: "Rodriguez, Daiana Milagros",
-        materias: [
-            {
-                materia: "Matematicas",
-                nota1: 7,
-                nota2: 9,
-                nota3: 10
-            },
-            {
-                materia: "Lengua",
-                nota1: 9,
-                nota2: 5,
-                nota3: 7
-            },
-            {
-                materia: "Ciencias",
-                nota1: 9,
-                nota2: 5,
-                nota3: 8
-            }
-        ]
-    },
-    {
-        id: 7,
-        nombre: "Ruiz, Maria Romina",
-        materias: [
-            {
-                materia: "Matematicas",
-                nota1: 5,
-                nota2: 6,
-                nota3: 8
-            },
-            {
-                materia: "Lengua",
-                nota1: 4,
-                nota2: 6,
-                nota3: 5
-            },
-            {
-                materia: "Ciencias",
-                nota1: 5,
-                nota2: 6,
-                nota3: 8
-            }
-        ]
-    },
-    {
-        id: 8,
-        nombre: "Ovejero, Lautaro Isamel",
-        materias: [
-            {
-                materia: "Matematicas",
-                nota1: 5,
-                nota2: 8,
-                nota3: 9
-            },
-            {
-                materia: "Lengua",
-                nota1: 3,
-                nota2: 5,
-                nota3: 5
-            },
-            {
-                materia: "Ciencias",
-                nota1: 6,
-                nota2: 7,
-                nota3: 9
-            }
-        ]
-    },
-    {
-        id: 9,
-        nombre: "Ortiz, Camilo Agustin",
-        materias: [{
-            materia: "Matematicas",
-            nota1: 5,
-            nota2: 6,
-            nota3: 9
-        },
-        {
-            materia: "Lengua",
-            nota1: 7,
-            nota2: 6,
-            nota3: 8
-        },
-        {
-            materia: "Ciencias",
-            nota1: 5,
-            nota2: 6,
-            nota3: 4
-        }
-        ]
-    },
-    {
-        id: 10,
-        nombre: "Paz, Alejandra Micaela",
-        materias: [
-            {
-                materia: "Matematicas",
-                nota1: 6,
-                nota2: 5,
-                nota3: 6
-            },
-            {
-                materia: "Lengua",
-                nota1: 6,
-                nota2: 6,
-                nota3: 6
-            },
-            {
-                materia: "Ciencias",
-                nota1: 4,
-                nota2: 5,
-                nota3: 8
-            }
-        ]
-    },
-]
-
-
 
 //En esta seccion traemos los elementos del DOM
 
@@ -277,7 +9,7 @@ const formIngresoDocente = document.getElementById("ingreso-docente");
 const contenedorAlumnos = document.getElementById("contenedor-alumnos");
 const botonSalir = document.getElementById("salir");
 let botonesDarBaja = document.querySelectorAll(".buton-baja");
-
+const parrafoIngreso = document.getElementById("p-form-ingreso");
 
 
 
@@ -345,30 +77,42 @@ function cargarListadoAlumnos(listaAlumnos) {
     })
 
     actualizarBotonesDarBaja();
+    //Guardamos en el localStorage el arreglo alumnos al final de la funcion
     localStorage.setItem("alumnos", JSON.stringify(alumnos));
 }
 
-
+//esta funcion ocurre cuando hacemos click en el boton INGRESAR
 function ingresarAlListado(e) {
     e.preventDefault();
-    //Verificamos si el boton ingresar funciona
-    console.log("boton apretado");
-    if (inputUsuario.value === "docente") {
-        console.log("usuario valido");
-        if (inputContraseña.value === "12345678") {
-            //entre comillas la contraseña porque el input password guarda los datos en forma de string
-            console.log("contraseña valida");
-            seccionPrincipal.classList.add("disabled");
-            cargarListadoAlumnos(alumnos);
-            formIngresoDocente.reset();
+    if (inputUsuario.value === "docente" && inputContraseña.value === "12345678") {
+        seccionPrincipal.classList.add("disabled");
+        cargarListadoAlumnos(alumnos);
+        formIngresoDocente.reset();
         }else{
-            console.log("contraseña invalida");
-            // // console.log(inputContraseña.value);
-            // // console.log(typeof inputContraseña.value);
+            parrafoIngreso.innerText = "Usuario o contraseña inválido. Por favor vuelve a escribir un usuario y contraseña";
         }
-    }else{
-        console.log("usuario invalido");
-    }
+
+
+    
+    //Lo comentado es el paso a paso de esta funcion para poder entenderla mas
+    // //Verificamos si el boton ingresar funciona
+    // console.log("boton apretado");
+    // if (inputUsuario.value === "docente") {
+    //     console.log("usuario valido");
+    //     if (inputContraseña.value === "12345678") {
+    //         //entre comillas la contraseña porque el input password guarda los datos en forma de string
+    //         console.log("contraseña valida");
+    //         seccionPrincipal.classList.add("disabled");
+    //         cargarListadoAlumnos(alumnos);
+    //         formIngresoDocente.reset();
+    //     }else{
+    //         console.log("contraseña invalida");
+    //         // // console.log(inputContraseña.value);
+    //         // // console.log(typeof inputContraseña.value);
+    //     }
+    // }else{
+    //     console.log("usuario invalido");
+    // }
 }
 
 const actualizarBotonesDarBaja = () =>{
