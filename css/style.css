@@ -151,12 +151,19 @@ h3{
     margin-bottom: 3.125rem;
 }
 
+.contenedor-alumnos h2{
+    color: orange;
+    font-size: 2.1875rem;
+    text-align: center;
+    margin-bottom: 2.5rem
+}
+
 .alumno{
     margin-bottom: 3.75rem;
 }
 
-.alumno h2{
-    font-size: 2.5rem;
+.alumno h3{
+    font-size: 1.75rem;
     text-decoration:underline;
     margin-bottom: .625rem;
     text-align: center;
@@ -179,6 +186,10 @@ h3{
     font-size: 1rem;
     line-height: 1.875rem;
     padding-top: .625rem;
+}
+
+.materia h3{
+    font-size: 1.25rem;
 }
 .buton-baja{
     width: 20%;

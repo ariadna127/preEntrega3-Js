@@ -305,13 +305,16 @@ function cargarListadoAlumnos(listaAlumnos) {
     contenedorAlumnos.classList.remove("disabled");
 
     botonSalir.classList.remove("disabled");
+    const h2Contenedor = document.createElement("h2");
+    h2Contenedor.innerText = "LISTADO DE ALUMNOS REGISTRADOS";
+    contenedorAlumnos.appendChild(h2Contenedor);
 
     //Accedemos al arreglo 
     listaAlumnos.forEach(alumno => {
         const divAlumno = document.createElement("div");
         divAlumno.classList.add("alumno");
         divAlumno.innerHTML = `
-        <h2>${alumno.nombre}</h2>
+        <h3>${alumno.nombre}</h3>
         `;
         const divMaterias = document.createElement("div");
         divMaterias.classList.add("materias");
