@@ -137,7 +137,10 @@ const darDeBajaAlumno = (e) =>{
     cargarListadoAlumnos(alumnos);
 }
 
+
+//Funcion para obetener los datos del LocalStorage
 const getAlumnosStorage = () =>{
+    //los parseamos porque estaban en formaton JSON
     const alumnosLS = JSON.parse(localStorage.getItem("alumnos"));
     return alumnosLS
 }
@@ -149,13 +152,22 @@ const getAlumnosStorage = () =>{
 
 //EVENTOS
 
+//Cuando la pagina se recarga ocurre este evento
 document.addEventListener("DOMContentLoaded", () =>{
+    //guardamos lo que nos returna la funcion getalumnosstorage en esa variable
     const alumnosStorage = getAlumnosStorage();
+    //verificamos q dentro de alumnos storage haya algo y no este vacio
     if (alumnosStorage) {
+        //cargamos los datos de alumnosStorage dentro de alumnos
         alumnos = alumnosStorage;
     }
+
 })
+
+//Cuando hacemos click en el boton submit del formulario ingreso docente se llama a este evento y llamamos a la funcion ingresar al Listadp
 formIngresoDocente.addEventListener("submit", ingresarAlListado);
+
+//Evento para salir de la lista de alumnos y volver al ingreso del docente
 botonSalir.addEventListener("click", () =>{
     contenedorAlumnos.classList.add("disabled");
     seccionPrincipal.classList.remove("disabled");
