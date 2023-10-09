@@ -267,14 +267,26 @@ let alumnos = [
 
 
 
+//En esta seccion traemos los elementos del DOM
+
+const seccionPrincipal = document.getElementById("seccion-principal");
 const inputUsuario = document.getElementById("usuario");
 const inputContraseña = document.getElementById("contraseña");
 const inputIngresar = document.getElementById("ingresar");
 const formIngresoDocente = document.getElementById("ingreso-docente");
 const contenedorAlumnos = document.getElementById("contenedor-alumnos");
+const botonSalir = document.getElementById("salir");
+let botonesDarBaja = document.querySelectorAll(".buton-baja");
 
+
+
+
+
+//Funcion para agregar propiedad promedio al arreglo Materias del cada objeto del arreglo Alumnos
 function calcularPromedio() {
+    //Primero accedemos a cada alumno dentro del array alumnos
     alumnos.forEach(alumno => {
+        //accedemos al arreglo materias que esta dentro de cada alumno
         alumno.materias.forEach(materia => {
             materia.promedio = Number(((materia.nota1 + materia.nota2 + materia.nota3) / 3).toFixed(2));
         })
@@ -283,20 +295,28 @@ function calcularPromedio() {
 
 calcularPromedio();
 
+
+
+
+//Funcion para mostrar listado de alumnos en el DOM
 function cargarListadoAlumnos(listaAlumnos) {
+    contenedorAlumnos.innerHTML = "";
+    //Primero eliminamos la clase disabled para q el contenedor aparezca el el DOM y no tenga display none
     contenedorAlumnos.classList.remove("disabled");
 
+    botonSalir.classList.remove("disabled");
+
+    //Accedemos al arreglo 
     listaAlumnos.forEach(alumno => {
         const divAlumno = document.createElement("div");
         divAlumno.classList.add("alumno");
         divAlumno.innerHTML = `
         <h2>${alumno.nombre}</h2>
         `;
-        divMaterias = document.createElement("div");
+        const divMaterias = document.createElement("div");
         divMaterias.classList.add("materias");
 
-
-        listaAlumnos.materias.forEach(materia => {
+        alumno.materias.forEach(materia => {
             const divMateria = document.createElement("div");
             divMateria.classList.add("materia");
             divMateria.innerHTML = `
@@ -318,24 +338,80 @@ function cargarListadoAlumnos(listaAlumnos) {
 
         divAlumno.appendChild(botonBaja);
         contenedorAlumnos.appendChild(divAlumno);
+
+    })
+
+    actualizarBotonesDarBaja();
+    localStorage.setItem("alumnos", JSON.stringify(alumnos));
+}
+
+
+function ingresarAlListado(e) {
+    e.preventDefault();
+    //Verificamos si el boton ingresar funciona
+    console.log("boton apretado");
+    if (inputUsuario.value === "docente") {
+        console.log("usuario valido");
+        if (inputContraseña.value === "12345678") {
+            //entre comillas la contraseña porque el input password guarda los datos en forma de string
+            console.log("contraseña valida");
+            seccionPrincipal.classList.add("disabled");
+            cargarListadoAlumnos(alumnos);
+            formIngresoDocente.reset();
+        }else{
+            console.log("contraseña invalida");
+            // // console.log(inputContraseña.value);
+            // // console.log(typeof inputContraseña.value);
+        }
+    }else{
+        console.log("usuario invalido");
+    }
+}
+
+const actualizarBotonesDarBaja = () =>{
+    //hacemos esto porque los botones recien existen en el DOM cuando cargamos los alumnos
+    botonesDarBaja = document.querySelectorAll(".buton-baja");
+
+    //y los traemos para poder darles eventos
+    //con un ForEach ponemos un escuchador para cada boton 
+    botonesDarBaja.forEach(boton =>{
+        boton.addEventListener("click", darDeBajaAlumno);
     })
 }
 
 
+const darDeBajaAlumno = (e) =>{
+    //obetenemos el id del boton y lo parseamos porque nos devuelve un tipo de dato en forma de string
+    const idBotonBaja = Number(e.currentTarget.id);
+    //obetenemos el index
+    const index = alumnos.findIndex(alumno => alumno.id === idBotonBaja);
+    //eliminamos el elemento de alumnos
+    alumnos.splice(index, 1);
+    cargarListadoAlumnos(alumnos);
+}
 
-
-
-
-formIngresoDocente.addEventListener("submit", ingresarAlListado);
-
-function ingresarAlListado(e) {
-    e.preventDefault();
-    if (inputUsuario.value === "docente" && inputContraseña.value === 12345678) {
-        cargarListadoAlumnos(alumnos);
-    }
+const getAlumnosStorage = () =>{
+    const alumnosLS = JSON.parse(localStorage.getItem("alumnos"));
+    return alumnosLS
 }
 
 
 
 
+
+
+//EVENTOS
+
+document.addEventListener("DOMContentLoaded", () =>{
+    const alumnosStorage = getAlumnosStorage();
+    if (alumnosStorage) {
+        alumnos = alumnosStorage;
+    }
+})
+formIngresoDocente.addEventListener("submit", ingresarAlListado);
+botonSalir.addEventListener("click", () =>{
+    contenedorAlumnos.classList.add("disabled");
+    seccionPrincipal.classList.remove("disabled");
+    botonSalir.classList.remove("disabled");
+})
 

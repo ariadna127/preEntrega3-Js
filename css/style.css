@@ -131,6 +131,15 @@ form input, button{
     gap: .625rem;
 }
 
+.salir{
+    background-color: orange;
+    color: white;
+    width: 10%;
+    height: 1.875rem;
+    margin-top: 1.875rem;
+    margin-left: 1.875rem;
+    cursor: pointer;
+}
 
 
 h3{
@@ -175,6 +184,7 @@ h3{
     width: 20%;
     margin-left: 1.5625rem;
     background-color: rgb(122, 3, 3);
+    cursor: pointer;
 }
 
 .alert-alumno-registrado{
