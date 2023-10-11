@@ -11,7 +11,9 @@ const botonSalir = document.getElementById("salir");
 let botonesDarBaja = document.querySelectorAll(".buton-baja");
 const parrafoIngreso = document.getElementById("p-form-ingreso");
 
+//variables global
 
+let seccionPrincialClase;
 
 
 //Funcion para agregar propiedad promedio al arreglo Materias del cada objeto del arreglo Alumnos
@@ -79,6 +81,10 @@ function cargarListadoAlumnos(listaAlumnos) {
     actualizarBotonesDarBaja();
     //Guardamos en el localStorage el arreglo alumnos al final de la funcion
     localStorage.setItem("alumnos", JSON.stringify(alumnos));
+    //Verificamos y guardamos en seccionPrincipalClase si seccionPrincipal tiene la clase disabled
+    seccionPrincialClase = seccionPrincipal.classList.contains("disabled");
+    //Guardamos en el localStorage seccionPrincipalClase la cual almacena un valor booleano
+    localStorage.setItem("seccion-principal", seccionPrincialClase);
 }
 
 //esta funcion ocurre cuando hacemos click en el boton INGRESAR
@@ -88,12 +94,12 @@ function ingresarAlListado(e) {
         seccionPrincipal.classList.add("disabled");
         cargarListadoAlumnos(alumnos);
         formIngresoDocente.reset();
-        }else{
-            parrafoIngreso.innerText = "Usuario o contraseña inválido. Por favor vuelve a escribir un usuario y contraseña";
-        }
+    } else {
+        parrafoIngreso.innerText = "Usuario o contraseña inválido. Por favor vuelve a escribir un usuario y contraseña";
+    }
 
 
-    
+
     //Lo comentado es el paso a paso de esta funcion para poder entenderla mas
     // //Verificamos si el boton ingresar funciona
     // console.log("boton apretado");
@@ -115,19 +121,19 @@ function ingresarAlListado(e) {
     // }
 }
 
-const actualizarBotonesDarBaja = () =>{
+const actualizarBotonesDarBaja = () => {
     //hacemos esto porque los botones recien existen en el DOM cuando cargamos los alumnos
     botonesDarBaja = document.querySelectorAll(".buton-baja");
 
     //y los traemos para poder darles eventos
     //con un ForEach ponemos un escuchador para cada boton 
-    botonesDarBaja.forEach(boton =>{
+    botonesDarBaja.forEach(boton => {
         boton.addEventListener("click", darDeBajaAlumno);
     })
 }
 
 
-const darDeBajaAlumno = (e) =>{
+const darDeBajaAlumno = (e) => {
     //obetenemos el id del boton y lo parseamos porque nos devuelve un tipo de dato en forma de string
     const idBotonBaja = Number(e.currentTarget.id);
     //obetenemos el index
@@ -139,28 +145,50 @@ const darDeBajaAlumno = (e) =>{
 
 
 //Funcion para obetener los datos del LocalStorage
-const getAlumnosStorage = () =>{
+const getAlumnosStorage = () => {
     //los parseamos porque estaban en formaton JSON
     const alumnosLS = JSON.parse(localStorage.getItem("alumnos"));
     return alumnosLS
 }
 
 
+//Funcion para obtener el estado de la variable seccion principal
+const getSeccionPrincipal = () => {
+    //creamos una variable donde almacenamos lo que obtenemos del LS con la clave "seccion-principal"
+    const seccionPrincipalLS = localStorage.getItem("seccion-principal")
+    //como el LS convierte todos los valores a string, comparamos con "true" en forma de string
+    if (seccionPrincipalLS === "true") {
+        seccionPrincipal.classList.add("disabled");
+        //guardamos lo que nos returna la funcion getalumnosstorage en esa variable
+        const alumnosStorage = getAlumnosStorage();
+        //verificamos q dentro de alumnos storage haya algo y no este vacio
+        if (alumnosStorage) {
+            //cargamos los datos de alumnosStorage dentro de alumnos
+            alumnos = alumnosStorage;
+        }
+        cargarListadoAlumnos(alumnos);
 
+    } else {
+        contenedorAlumnos.classList.add("disabled");
+        botonSalir.classList.add("disabled");
+        //guardamos lo que nos returna la funcion getalumnosstorage en esa variable
+        const alumnosStorage = getAlumnosStorage();
+        //verificamos q dentro de alumnos storage haya algo y no este vacio
+        if (alumnosStorage) {
+            //cargamos los datos de alumnosStorage dentro de alumnos
+            alumnos = alumnosStorage;
+        }
+    }
+}
 
 
 
 //EVENTOS
 
 //Cuando la pagina se recarga ocurre este evento
-document.addEventListener("DOMContentLoaded", () =>{
-    //guardamos lo que nos returna la funcion getalumnosstorage en esa variable
-    const alumnosStorage = getAlumnosStorage();
-    //verificamos q dentro de alumnos storage haya algo y no este vacio
-    if (alumnosStorage) {
-        //cargamos los datos de alumnosStorage dentro de alumnos
-        alumnos = alumnosStorage;
-    }
+document.addEventListener("DOMContentLoaded", () => {
+    //llamamos a la funcion getSeccionPrincipal
+    getSeccionPrincipal();
 
 })
 
@@ -168,9 +196,13 @@ document.addEventListener("DOMContentLoaded", () =>{
 formIngresoDocente.addEventListener("submit", ingresarAlListado);
 
 //Evento para salir de la lista de alumnos y volver al ingreso del docente
-botonSalir.addEventListener("click", () =>{
+botonSalir.addEventListener("click", () => {
     contenedorAlumnos.classList.add("disabled");
     seccionPrincipal.classList.remove("disabled");
     botonSalir.classList.remove("disabled");
+    //Verificamos y guardamos en seccionPrincipalClase si seccionPrincipal tiene la clase disabled
+    seccionPrincialClase = seccionPrincipal.classList.contains("disabled");
+    //Guardamos en el localStorage seccionPrincipalClase la cual almacena un valor booleano
+    localStorage.setItem("seccion-principal", seccionPrincialClase);
 })
 
