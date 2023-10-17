@@ -199,7 +199,7 @@ formIngresoDocente.addEventListener("submit", ingresarAlListado);
 botonSalir.addEventListener("click", () => {
     contenedorAlumnos.classList.add("disabled");
     seccionPrincipal.classList.remove("disabled");
-    botonSalir.classList.remove("disabled");
+    botonSalir.classList.add("disabled");
     //Verificamos y guardamos en seccionPrincipalClase si seccionPrincipal tiene la clase disabled
     seccionPrincialClase = seccionPrincipal.classList.contains("disabled");
     //Guardamos en el localStorage seccionPrincipalClase la cual almacena un valor booleano
